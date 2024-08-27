@@ -1,0 +1,100 @@
+From dcef00eb4d8396024faf835f3588fb1601af0708 Mon Sep 17 00:00:00 2001
+From: Loser Joker <zhaohy22@mails.tsinghua.edu.cn>
+Date: Mon, 8 Jul 2024 02:05:23 +0800
+Subject: [PATCH 1/7] loongarch: add arch support for LoongArch 32bit Reduced
+
+Signed-off-by: Loser Joker <zhaohy22@mails.tsinghua.edu.cn>
+---
+ arch/Config.in               | 12 ++++++++++++
+ arch/Config.in.loongarch     | 36 ++++++++++++++++++++++++++++++++++++
+ support/gnuconfig/config.sub |  1 +
+ 3 files changed, 49 insertions(+)
+ create mode 100644 arch/Config.in.loongarch
+
+diff --git a/arch/Config.in b/arch/Config.in
+index f39c33ef7f..e2ef155552 100644
+--- a/arch/Config.in
++++ b/arch/Config.in
+@@ -77,6 +77,14 @@ config BR2_i386
+ 	  Intel i386 architecture compatible microprocessor
+ 	  http://en.wikipedia.org/wiki/I386
+ 
++config BR2_loongarch
++	bool "LoongArch (32bit-reduced)"
++	select BR2_USE_MMU
++	help
++	  The LoongArch here means the la32r version of LoongArch ISA.
++	  Currently we only support the SoC on Chiplab platform.
++	  https://gitee.com/loongson-edu/chiplab
++
+ config BR2_m68k
+ 	bool "m68k"
+ 	# MMU support is set by the subarchitecture file, arch/Config.in.m68k
+@@ -374,6 +382,10 @@ if BR2_arm || BR2_armeb || BR2_aarch64 || BR2_aarch64_be
+ source "arch/Config.in.arm"
+ endif
+ 
++if BR2_loongarch
++source "arch/Config.in.loongarch"
++endif
++
+ if BR2_m68k
+ source "arch/Config.in.m68k"
+ endif
+diff --git a/arch/Config.in.loongarch b/arch/Config.in.loongarch
+new file mode 100644
+index 0000000000..204a9eb7da
+--- /dev/null
++++ b/arch/Config.in.loongarch
+@@ -0,0 +1,36 @@
++# LoongArch 32bit Reduced CPU ISA extensions.
++
++choice
++	prompt "Target Architecture Size"
++	default BR2_LOONGARCH_32
++
++config BR2_LOONGARCH_32
++	bool "32-bit"
++
++endchoice
++
++config BR2_LOONGARCH_USE_MMU
++	bool "MMU support"
++	default y
++	select BR2_USE_MMU
++	help
++	  Enable this option if your LoongArch core has a MMU (Memory
++	  Management Unit).
++
++config BR2_ARCH
++	default "loongarch32r" if !BR2_ARCH_IS_64
++
++config BR2_NORMALIZED_ARCH
++	default "loongarch32r"
++
++config BR2_ENDIAN
++	default "LITTLE"
++
++config BR2_GCC_TARGET_ABI
++	default "ilp32s"
++
++config BR2_READELF_ARCH_NAME
++	default "LoongArch"
++
++# vim: ft=kconfig
++# -*- mode:kconfig; -*-
+diff --git a/support/gnuconfig/config.sub b/support/gnuconfig/config.sub
+index 9bc49a7e92..20ab1438ed 100755
+--- a/support/gnuconfig/config.sub
++++ b/support/gnuconfig/config.sub
+@@ -1183,6 +1183,7 @@ case $cpu-$vendor in
+ 			| i370 | i*86 | i860 | i960 | ia16 | ia64 \
+ 			| ip2k | iq2000 \
+ 			| k1om \
++			| loongarch32r \
+ 			| le32 | le64 \
+ 			| lm32 \
+ 			| m32c | m32r | m32rle \
+-- 
+2.39.2
+

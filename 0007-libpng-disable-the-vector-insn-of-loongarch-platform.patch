@@ -1,0 +1,26 @@
+From 728ca5413fd8d228d3c1ef6312a3ef1893a1b78a Mon Sep 17 00:00:00 2001
+From: Loser Joker <zhaohy22@mails.tsinghua.edu.cn>
+Date: Mon, 12 Aug 2024 10:09:19 +0800
+Subject: [PATCH 7/7] libpng: disable the vector insn of loongarch platform
+
+Signed-off-by: Loser Joker <zhaohy22@mails.tsinghua.edu.cn>
+---
+ package/libpng/libpng.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/package/libpng/libpng.mk b/package/libpng/libpng.mk
+index af38afde47..f2f7c9d8ce 100644
+--- a/package/libpng/libpng.mk
++++ b/package/libpng/libpng.mk
+@@ -15,7 +15,7 @@ LIBPNG_INSTALL_STAGING = YES
+ LIBPNG_DEPENDENCIES = host-pkgconf zlib
+ HOST_LIBPNG_DEPENDENCIES = host-pkgconf host-zlib
+ LIBPNG_CONFIG_SCRIPTS = libpng$(LIBPNG_SERIES)-config libpng-config
+-LIBPNG_CONF_OPTS = --disable-tools
++LIBPNG_CONF_OPTS = --disable-tools --disable-loongarch-lsx
+ 
+ ifeq ($(BR2_ARM_CPU_HAS_NEON)$(BR2_aarch64),y)
+ LIBPNG_CONF_OPTS += --enable-arm-neon
+-- 
+2.39.2
+

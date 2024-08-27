@@ -1,0 +1,237 @@
+From b5c3ee2248f79b44d5ef274ffc9dbe5eb2ee0c12 Mon Sep 17 00:00:00 2001
+From: Loser Joker <zhaohy22@mails.tsinghua.edu.cn>
+Date: Mon, 12 Aug 2024 10:08:51 +0800
+Subject: [PATCH 6/7] change the default shell to sh
+
+Signed-off-by: Loser Joker <zhaohy22@mails.tsinghua.edu.cn>
+---
+ .config | 75 ++++++++++++++++++++++-----------------------------------
+ 1 file changed, 29 insertions(+), 46 deletions(-)
+
+diff --git a/.config b/.config
+index 73c23a7e6a..96da847fb9 100644
+--- a/.config
++++ b/.config
+@@ -1,6 +1,6 @@
+ #
+ # Automatically generated file; DO NOT EDIT.
+-# Buildroot 2024.05-256-gc00e9dbbc4-dirty Configuration
++# Buildroot 2024.05-257-g6d1fab8dc9-dirty Configuration
+ #
+ BR2_HAVE_DOT_CONFIG=y
+ BR2_HOST_GCC_AT_LEAST_4_9=y
+@@ -322,8 +322,11 @@ BR2_LUAROCKS_MIRROR="http://rocks.moonscript.org"
+ BR2_CPAN_MIRROR="https://cpan.metacpan.org"
+ BR2_JLEVEL=0
+ # BR2_CCACHE is not set
+-# BR2_ENABLE_DEBUG is not set
+-# BR2_ENABLE_RUNTIME_DEBUG is not set
++BR2_ENABLE_DEBUG=y
++# BR2_DEBUG_1 is not set
++BR2_DEBUG_2=y
++# BR2_DEBUG_3 is not set
++BR2_ENABLE_RUNTIME_DEBUG=y
+ BR2_STRIP_strip=y
+ BR2_STRIP_EXCLUDE_FILES=""
+ BR2_STRIP_EXCLUDE_DIRS=""
+@@ -628,7 +631,6 @@ BR2_PACKAGE_LTP_TESTSUITE_ARCH_SUPPORTS=y
+ # BR2_PACKAGE_BINUTILS is not set
+ # BR2_PACKAGE_BITWISE is not set
+ # BR2_PACKAGE_BSDIFF is not set
+-# BR2_PACKAGE_BUSTLE is not set
+ # BR2_PACKAGE_CHECK is not set
+ # BR2_PACKAGE_CPPUNIT is not set
+ # BR2_PACKAGE_CUKINIA is not set
+@@ -724,7 +726,12 @@ BR2_PACKAGE_TREE=y
+ #
+ # BR2_PACKAGE_BITSTREAM_VERA is not set
+ # BR2_PACKAGE_CANTARELL is not set
+-# BR2_PACKAGE_DEJAVU is not set
++BR2_PACKAGE_DEJAVU=y
++BR2_PACKAGE_DEJAVU_MONO=y
++BR2_PACKAGE_DEJAVU_SANS=y
++BR2_PACKAGE_DEJAVU_SERIF=y
++BR2_PACKAGE_DEJAVU_SANS_CONDENSED=y
++BR2_PACKAGE_DEJAVU_SERIF_CONDENSED=y
+ # BR2_PACKAGE_FONT_AWESOME is not set
+ # BR2_PACKAGE_GHOSTSCRIPT_FONTS is not set
+ # BR2_PACKAGE_INCONSOLATA is not set
+@@ -737,7 +744,6 @@ BR2_PACKAGE_LIBERATION_SERIF=y
+ #
+ # Icons
+ #
+-# BR2_PACKAGE_ADWAITA_ICON_THEME is not set
+ # BR2_PACKAGE_HICOLOR_ICON_THEME is not set
+ 
+ #
+@@ -749,7 +755,6 @@ BR2_PACKAGE_LIBERATION_SERIF=y
+ #
+ # Themes
+ #
+-BR2_PACKAGE_GTK2_ENGINES=y
+ 
+ #
+ # Games
+@@ -1158,11 +1163,9 @@ BR2_PACKAGE_XDATA_XBITMAPS=y
+ # BR2_PACKAGE_DILLO is not set
+ # BR2_PACKAGE_DOCKER is not set
+ # BR2_PACKAGE_FEH is not set
+-BR2_PACKAGE_GTKPERF=y
+-BR2_PACKAGE_LEAFPAD=y
+ # BR2_PACKAGE_MUPDF is not set
+ # BR2_PACKAGE_NODM is not set
+-BR2_PACKAGE_PCMANFM=y
++# BR2_PACKAGE_PCMANFM is not set
+ # BR2_PACKAGE_RDESKTOP is not set
+ # BR2_PACKAGE_SYNERGY is not set
+ 
+@@ -1182,34 +1185,22 @@ BR2_PACKAGE_PCMANFM=y
+ #
+ BR2_PACKAGE_XTERM=y
+ BR2_PACKAGE_XVKBD=y
+-# BR2_PACKAGE_YAD is not set
++
++#
++# yad needs libgtk2 or libgtk3 w/ X11 backend
++#
+ 
+ #
+ # X libraries and helper libraries
+ #
+-BR2_PACKAGE_LIBSEXY=y
+ BR2_PACKAGE_XKEYBOARD_CONFIG=y
+ 
+ #
+ # X window managers
+ #
+ BR2_PACKAGE_FLUXBOX=y
+-BR2_PACKAGE_MATCHBOX=y
+-BR2_PACKAGE_MATCHBOX_SM=y
+-
+-#
+-# matchbox utilities
+-#
+-BR2_PACKAGE_MATCHBOX_COMMON=y
+-# BR2_PACKAGE_MATCHBOX_COMMON_PDA is not set
+-BR2_PACKAGE_MATCHBOX_DESKTOP=y
+-BR2_PACKAGE_MATCHBOX_FAKEKEY=y
+-BR2_PACKAGE_MATCHBOX_KEYBOARD=y
+-BR2_PACKAGE_MATCHBOX_LIB=y
+-BR2_PACKAGE_MATCHBOX_PANEL=y
+-BR2_PACKAGE_MATCHBOX_STARTUP_MONITOR=y
+-BR2_PACKAGE_METACITY=y
+-BR2_PACKAGE_OPENBOX=y
++# BR2_PACKAGE_MATCHBOX is not set
++# BR2_PACKAGE_OPENBOX is not set
+ # BR2_PACKAGE_RATPOISON is not set
+ 
+ #
+@@ -1256,16 +1247,12 @@ BR2_PACKAGE_OPENBOX=y
+ #
+ # dahdi-tools needs a toolchain w/ threads and a Linux kernel to be built
+ #
+-BR2_PACKAGE_DBUS=y
++# BR2_PACKAGE_DBUS is not set
+ 
+ #
+ # dbusbroker needs systemd and a toolchain w/ threads
+ #
+-# BR2_PACKAGE_DBUS_CPP is not set
+ # BR2_PACKAGE_DBUS_CXX is not set
+-# BR2_PACKAGE_DBUS_GLIB is not set
+-# BR2_PACKAGE_DBUS_PYTHON is not set
+-# BR2_PACKAGE_DBUS_TRIGGERD is not set
+ # BR2_PACKAGE_DFU_PROGRAMMER is not set
+ # BR2_PACKAGE_DFU_UTIL is not set
+ # BR2_PACKAGE_DMRAID is not set
+@@ -1461,8 +1448,7 @@ BR2_PACKAGE_HOST_ERLANG_ARCH_SUPPORTS=y
+ # BR2_PACKAGE_JIMTCL is not set
+ # BR2_PACKAGE_LUA is not set
+ BR2_PACKAGE_PROVIDES_HOST_LUAINTERPRETER="host-lua"
+-BR2_PACKAGE_MICROPYTHON=y
+-# BR2_PACKAGE_MICROPYTHON_LIB is not set
++# BR2_PACKAGE_MICROPYTHON is not set
+ BR2_PACKAGE_HOST_MONO_ARCH_SUPPORTS=y
+ BR2_PACKAGE_HOST_OPENJDK_BIN_ARCH_SUPPORTS=y
+ BR2_PACKAGE_PERL=y
+@@ -2278,7 +2264,7 @@ BR2_PACKAGE_SQLITE=y
+ # Graphics
+ #
+ # BR2_PACKAGE_ASSIMP is not set
+-BR2_PACKAGE_AT_SPI2_CORE=y
++# BR2_PACKAGE_AT_SPI2_CORE is not set
+ # BR2_PACKAGE_ATKMM is not set
+ # BR2_PACKAGE_ATKMM2_28 is not set
+ # BR2_PACKAGE_BULLET is not set
+@@ -2302,7 +2288,7 @@ BR2_PACKAGE_CAIRO_SVG=y
+ BR2_PACKAGE_FONTCONFIG=y
+ BR2_PACKAGE_FREETYPE=y
+ # BR2_PACKAGE_GD is not set
+-BR2_PACKAGE_GDK_PIXBUF=y
++# BR2_PACKAGE_GDK_PIXBUF is not set
+ # BR2_PACKAGE_GDK_PIXBUF_XLIB is not set
+ # BR2_PACKAGE_GIBLIB is not set
+ BR2_PACKAGE_GIFLIB=y
+@@ -2351,8 +2337,8 @@ BR2_PACKAGE_LIBDRM_HAS_ATOMIC=y
+ # libepoxy needs an OpenGL and/or OpenGL EGL backend
+ #
+ # BR2_PACKAGE_LIBEXIF is not set
+-BR2_PACKAGE_LIBFM=y
+-BR2_PACKAGE_LIBFM_EXTRA=y
++# BR2_PACKAGE_LIBFM is not set
++# BR2_PACKAGE_LIBFM_EXTRA is not set
+ 
+ #
+ # libfreeglut depends on X.org and needs an OpenGL backend
+@@ -2360,7 +2346,6 @@ BR2_PACKAGE_LIBFM_EXTRA=y
+ # BR2_PACKAGE_LIBFREEIMAGE is not set
+ # BR2_PACKAGE_LIBGDIPLUS is not set
+ # BR2_PACKAGE_LIBGEOTIFF is not set
+-# BR2_PACKAGE_LIBGLADE is not set
+ 
+ #
+ # libglew depends on X.org and needs an OpenGL backend
+@@ -2370,8 +2355,7 @@ BR2_PACKAGE_LIBFM_EXTRA=y
+ # libglu needs an OpenGL backend
+ #
+ # BR2_PACKAGE_LIBGTA is not set
+-BR2_PACKAGE_LIBGTK2=y
+-BR2_PACKAGE_LIBGTK2_DEMO=y
++# BR2_PACKAGE_LIBGTK2 is not set
+ 
+ #
+ # libgtk3 needs an OpenGL or an OpenGL-EGL/wayland backend
+@@ -2392,11 +2376,11 @@ BR2_PACKAGE_LIBPNG=y
+ #
+ # libwpe needs a toolchain w/ C++, dynamic library and an OpenEGL-capable backend
+ #
+-BR2_PACKAGE_MENU_CACHE=y
++# BR2_PACKAGE_MENU_CACHE is not set
+ # BR2_PACKAGE_OPENCV3 is not set
+ # BR2_PACKAGE_OPENCV4 is not set
+ # BR2_PACKAGE_OPENJPEG is not set
+-BR2_PACKAGE_PANGO=y
++# BR2_PACKAGE_PANGO is not set
+ # BR2_PACKAGE_PANGOMM is not set
+ # BR2_PACKAGE_PANGOMM2_46 is not set
+ BR2_PACKAGE_PIXMAN=y
+@@ -2824,7 +2808,7 @@ BR2_PACKAGE_LIBFFI=y
+ # BR2_PACKAGE_LIBFUTILS is not set
+ # BR2_PACKAGE_LIBGEE is not set
+ # BR2_PACKAGE_LIBGEOS is not set
+-BR2_PACKAGE_LIBGLIB2=y
++# BR2_PACKAGE_LIBGLIB2 is not set
+ # BR2_PACKAGE_LIBGLOB is not set
+ # BR2_PACKAGE_LIBICAL is not set
+ # BR2_PACKAGE_LIBITE is not set
+@@ -2948,7 +2932,6 @@ BR2_PACKAGE_READLINE=y
+ # BR2_PACKAGE_LIBESMTP is not set
+ # BR2_PACKAGE_MSMTP is not set
+ # BR2_PACKAGE_MUTT is not set
+-# BR2_PACKAGE_SYLPHEED is not set
+ 
+ #
+ # Miscellaneous
+-- 
+2.39.2
+

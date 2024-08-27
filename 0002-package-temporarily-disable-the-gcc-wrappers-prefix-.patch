@@ -1,0 +1,33 @@
+From f0e4874356555526a8dc4e503dc0d33f995a5cfc Mon Sep 17 00:00:00 2001
+From: Loser Joker <zhaohy22@mails.tsinghua.edu.cn>
+Date: Mon, 8 Jul 2024 02:07:27 +0800
+Subject: [PATCH 2/7] package: temporarily disable the gcc wrappers' prefix
+ specify for compatibility of la32r compilers
+
+Signed-off-by: Loser Joker <zhaohy22@mails.tsinghua.edu.cn>
+---
+ package/Makefile.in | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/package/Makefile.in b/package/Makefile.in
+index 5476234c7e..bd3ccf7ae5 100644
+--- a/package/Makefile.in
++++ b/package/Makefile.in
+@@ -202,9 +202,11 @@ endif
+ # gcc-4.7 and later ships with wrappers that will automatically pass
+ # arguments to the binutils tools. Those are paths to necessary linker
+ # plugins.
+-ifeq ($(BR2_TOOLCHAIN_GCC_AT_LEAST_4_7),y)
+-TARGET_GCC_WRAPPERS_PREFIX = gcc-
+-endif
++# However, we should add an option to ask user should we do so by default.
++# Temporarily we disable it.
++# ifeq ($(BR2_TOOLCHAIN_GCC_AT_LEAST_4_7),y)
++# TARGET_GCC_WRAPPERS_PREFIX = gcc-
++# endif
+ 
+ # Define TARGET_xx variables for all common binutils/gcc
+ TARGET_AR       = $(TARGET_CROSS)$(TARGET_GCC_WRAPPERS_PREFIX)ar
+-- 
+2.39.2
+
